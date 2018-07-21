@@ -36,22 +36,21 @@
       <table style="width:100%">
   <tr>
     <th>Status</th>
-    <th>Transporter name</th>
     <th>Transporter id</th>
     <th>Nfe key</th>
     <th>Transaction id</th>
     <th>Transport unit id</th>
   </tr>
+  <br>
   <tr v-for="item in itens.nfes">
     <td>{{item.status}}</td>
-    <td>{{item.transporter_name}}</td>
-    <td>{{item.transporter_id}}</td>
+    <td class="tr_id">{{item.transporter_id}}</td>
     <td>{{item.nfe_key}}</td>
     <td class="tr_id">{{item.transaction_id}}</td>
     <td class="tr_id">{{item.transport_unit_id}}</td>
     <td>
       <section>
-        <button class="button is-primary is-medium"
+        <button :disabled="item.status === 'DISPATCHED' "class="button is-success is-medium"
             @click="fillModal(item)">
             Despachar
         </button>
@@ -196,7 +195,6 @@ export default {
       item.status = "DISPATCHED";
       this.isComponentModalActive = true;
       this.formProps.status = item.status;
-      this.formProps.transporter_name = item.transporter_name;
       this.formProps.transporter_id = item.transporter_id;
       this.formProps.nfe_key = item.nfe_key;
       this.formProps.transaction_id = item.transaction_id;
@@ -240,7 +238,7 @@ button{
   font-size: 10px !important;
 }
 tr{
-  font-size: 15px;
+  font-size: 12px;
 }
 .tr_id{
   font-size:8px;
